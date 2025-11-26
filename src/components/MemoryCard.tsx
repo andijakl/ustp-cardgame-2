@@ -19,6 +19,7 @@ export function MemoryCard({ card, isFlipped, isMatched, onClick, disabled }: Me
       onClick={disabled ? undefined : onClick}
       whileHover={!disabled && !isFlipped ? { scale: 1.05 } : {}}
       whileTap={!disabled && !isFlipped ? { scale: 0.95 } : {}}
+      data-card
     >
       <motion.div
         className="relative w-full h-full"
@@ -34,9 +35,8 @@ export function MemoryCard({ card, isFlipped, isMatched, onClick, disabled }: Me
         </div>
 
         <motion.div
-          className={`absolute inset-0 flex items-center justify-center rounded-lg shadow-lg ${
-            isMatched ? 'bg-secondary' : 'bg-card'
-          }`}
+          className={`absolute inset-0 flex items-center justify-center rounded-lg shadow-lg ${isMatched ? 'bg-secondary' : 'bg-card'
+            }`}
           style={{ backfaceVisibility: 'hidden', rotateY: 180 }}
           animate={isMatched ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 0.4 }}
