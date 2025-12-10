@@ -1,0 +1,23 @@
+
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger when a tag starting with 'v' is created (e.g., v1.0.0)
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2.5.0
+        with:
+          files: |
+            # Add any files you want to include in the release, e.g.:
+            # dist/*
