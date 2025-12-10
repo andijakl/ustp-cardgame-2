@@ -2,9 +2,9 @@
 name: Create Release
 
 on:
-  create:
+  push:
     tags:
-      - 'v*'  # Trigger when a tag starting with 'v' is created (e.g., v1.0.0)
+      - '*'  # Trigger when a tag starting with 'v' is created (e.g., v1.0.0)
 
 jobs:
   release:
