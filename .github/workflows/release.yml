@@ -19,5 +19,3 @@ jobs:
           files: |
             # Add any files you want to include in the release, e.g.:
             # dist/*
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
