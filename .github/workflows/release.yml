@@ -1,10 +1,9 @@
-
 name: Create Release
 
 on:
   push:
     tags:
-      - 'v*'  # Trigger when a tag starting with 'v' is created (e.g., v1.0.0)
+      - "v*" # Trigger when a tag starting with 'v' is created (e.g., v1.0.0)
 
 jobs:
   release:
@@ -15,9 +14,38 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Package release artifacts
+        run: |
+          set -e
+          mkdir -p release
+          # If your build outputs to `dist/` (common for Vite), include it
+          if [ -d dist ]; then
+            # create a zip of the dist folder for easier download
+            (cd dist && zip -r ../release-dist.zip .) || true
+            cp -r dist release/ || true
+          fi
+          # If you have a `bin/` or `build/` folder for native binaries, include them
+          if [ -d build ]; then
+            cp -r build release/ || true
+          fi
+          if [ -d bin ]; then
+            cp -r bin release/ || true
+          fi
+          # Add any additional packaging steps here, e.g. cross-compile and place outputs into `release/`
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2.5.0
         with:
           files: |
-            # Add any files you want to include in the release, e.g.:
-            # dist/*
+            release/*
