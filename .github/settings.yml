@@ -81,6 +81,10 @@ milestones:
 collaborators:
   - username: JantasBantasMe
     permission: admin
+  - username: andijakl
+    permission: admin
+  - username: ViktorHofer
+    permission: write
   # - username: hubot
   #   permission: pull
 
