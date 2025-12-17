@@ -31,15 +31,17 @@ jobs:
           mkdir -p release
           # If your build outputs to `dist/` (common for Vite), include it
           if [ -d dist ]; then
-            # create a zip of the dist folder for easier download
-            (cd dist && zip -r ../release-dist.zip .) || true
+            # create a zip of the dist folder for easier download (placed into release/)
+            (cd dist && zip -r ../release/release-dist.zip .) || true
             cp -r dist release/ || true
           fi
           # If you have a `bin/` or `build/` folder for native binaries, include them
           if [ -d build ]; then
+            (cd build && zip -r ../release/release-build.zip .) || true
             cp -r build release/ || true
           fi
           if [ -d bin ]; then
+            (cd bin && zip -r ../release/release-bin.zip .) || true
             cp -r bin release/ || true
           fi
           # Add any additional packaging steps here, e.g. cross-compile and place outputs into `release/`
