@@ -14,7 +14,7 @@
         "test:run": "vitest run"
     },
     "dependencies": {
-        "@github/spark": "^0.44.4",
+        "@github/spark": "^0.44.15",
         "@heroicons/react": "^2.2.0",
         "@hookform/resolvers": "^5.2.2",
         "@octokit/core": "^7.0.6",
